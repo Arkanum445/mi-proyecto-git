@@ -19,8 +19,7 @@ public class ProyectoGit {
         // TODO code application logic here
        Scanner sc = new Scanner(System.in);
         ControladorAsistentes controlador = new ControladorAsistentes();
-    }
-    int opcion = 0;
+        int opcion = 0;
 
         do {
             try {
@@ -80,5 +79,134 @@ public class ProyectoGit {
             }
 
         } while (opcion != 7);
+         sc.close();
+    }
 
+    public static void registrarCompleto(Scanner sc, ControladorAsistentes controlador) {
+
+    String tipoDocumento = "";
+    while (true) {
+        System.out.print("Tipo de documento (DNI/CE): ");
+        tipoDocumento = sc.nextLine();
+
+        if (tipoDocumento.equalsIgnoreCase("DNI") || tipoDocumento.equalsIgnoreCase("CE")) {
+            break;
+        } else {
+            System.out.println("Error: debe ser DNI o CE");
+        }
+    }
+
+    String numeroDocumento = "";
+    while (true) {
+        try {
+            System.out.print("Número de documento: ");
+            numeroDocumento = sc.nextLine();
+
+            if (!numeroDocumento.matches("[0-9]+")) {
+                throw new IllegalArgumentException("Solo números");
+            }
+
+            break;
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    System.out.print("Nombres: ");
+    String nombres = sc.nextLine();
+
+    System.out.print("Apellido paterno: ");
+    String apellidoPaterno = sc.nextLine();
+
+    System.out.print("Apellido materno: ");
+    String apellidoMaterno = sc.nextLine();
+
+    int edad = 0;
+    while (true) {
+        try {
+            System.out.print("Edad: ");
+            edad = Integer.parseInt(sc.nextLine());
+
+            if (edad < 0) {
+                throw new IllegalArgumentException("Edad inválida");
+            }
+
+            break;
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    String celular = "";
+    while (true) {
+        try {
+            System.out.print("Celular: ");
+            celular = sc.nextLine();
+
+            if (!celular.matches("[0-9]{9}")) {
+                throw new IllegalArgumentException("Debe tener 9 dígitos");
+            }
+
+            break;
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    String correo = "";
+    while (true) {
+        try {
+            System.out.print("Correo: ");
+            correo = sc.nextLine();
+
+            if (!correo.contains("@")) {
+                throw new IllegalArgumentException("Correo inválido");
+            }
+
+            break;
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    Asistente asistente = new Asistente(tipoDocumento,numeroDocumento,nombres,apellidoPaterno,
+            apellidoMaterno,edad,celular,correo);
+
+    controlador.agregarAsistente(asistente);
+}
+
+    public static void registrarSinContacto(Scanner sc, ControladorAsistentes controlador) {
+        System.out.print("Tipo de documento (DNI/CE): ");
+        String tipoDocumento = sc.nextLine();
+
+        System.out.print("Número de documento: ");
+        String numeroDocumento = sc.nextLine();
+
+        System.out.print("Nombres: ");
+        String nombres = sc.nextLine();
+
+        System.out.print("Apellido paterno: ");
+        String apellidoPaterno = sc.nextLine();
+
+        System.out.print("Apellido materno: ");
+        String apellidoMaterno = sc.nextLine();
+
+        System.out.print("Edad: ");
+        int edad = Integer.parseInt(sc.nextLine());
+
+        Asistente asistente = new Asistente(
+                tipoDocumento,
+                numeroDocumento,
+                nombres,
+                apellidoPaterno,
+                apellidoMaterno,
+                edad
+        );
+
+        controlador.agregarAsistente(asistente);
+    }    
 }
