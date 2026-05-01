@@ -16,4 +16,22 @@ public class ControladorAsistentes {
     public ControladorAsistentes() {
         listaAsistentes = new ArrayList<>();
     }
+      public boolean existeDocumento(String numeroDocumento) {
+        for (Asistente a : listaAsistentes) {
+            if (a.getNumeroDocumento().equals(numeroDocumento)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void agregarAsistente(Asistente asistente) {
+        if (existeDocumento(asistente.getNumeroDocumento())) {
+            throw new IllegalArgumentException("Ya existe un asistente con ese documento.");
+        }
+
+        listaAsistentes.add(asistente);
+        System.out.println("Asistente registrado correctamente.");
+    }
+
 }
