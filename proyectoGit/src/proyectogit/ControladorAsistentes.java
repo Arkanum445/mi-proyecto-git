@@ -33,5 +33,43 @@ public class ControladorAsistentes {
         listaAsistentes.add(asistente);
         System.out.println("Asistente registrado correctamente.");
     }
+      public void listarAsistentes() {
+        if (listaAsistentes.isEmpty()) {
+            System.out.println("No hay asistentes registrados.");
+        } else {
+            for (Asistente a : listaAsistentes) {
+                a.mostrarDatos();
+            }
+        }
+    }
+
+    public void listarAsistentes(String categoria) {
+        boolean encontrado = false;
+
+        for (Asistente a : listaAsistentes) {
+            if (a.getCategoria().equalsIgnoreCase(categoria)) {
+                a.mostrarDatos(false);
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("No hay asistentes en la categoría: " + categoria);
+        }
+    }
+
+    public void listarAsistentes(boolean mostrarContacto) {
+        if (listaAsistentes.isEmpty()) {
+            System.out.println("No hay asistentes registrados.");
+        } else {
+            for (Asistente a : listaAsistentes) {
+                a.mostrarDatos(mostrarContacto);
+            }
+        }
+    }
+
+    public int cantidadAsistentes() {
+        return listaAsistentes.size();
+    }
 
 }
