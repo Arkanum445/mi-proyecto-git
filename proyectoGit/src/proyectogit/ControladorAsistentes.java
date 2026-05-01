@@ -4,10 +4,16 @@
  */
 package proyectogit;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author edgar
  */
 public class ControladorAsistentes {
-    
+     private ArrayList<Asistente> listaAsistentes;
+
+    public ControladorAsistentes() {
+        listaAsistentes = new ArrayList<>();
+    }
 }
