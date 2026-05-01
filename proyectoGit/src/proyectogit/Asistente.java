@@ -18,10 +18,7 @@ public class Asistente {
     private String categoria;
     private String celular;
     private String correo; 
-    public String getTipoDocumento() {
-        return tipoDocumento;
-    }
-
+   
    public Asistente(String tipoDocumento, String numeroDocumento, String nombres, String apellidoPaterno, String apellidoMaterno, int edad, String celular, String correo) {
         setTipoDocumento(tipoDocumento);
         setNumeroDocumento(numeroDocumento);
